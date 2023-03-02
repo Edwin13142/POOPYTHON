@@ -28,7 +28,7 @@ seccion3 = Frame(ventana, bg="blue") #Especificar siempre a donde debe de ir
 seccion3.pack(expand=True, fill='both') #Posicionamos dentro del pack
 
 #3.- Agregamos botones
-#4.- Posicionamiento de mensajes con el .pack
+#4.- Posicionamiento de mensajes con el .pack 
 botonAzul = Button(seccion1, text="Boton Azul", fg="blue", command=mostrarMensajes)
 botonAzul.place(x=260, y=60)
 botonNegro = Button(seccion2, text="Boton Negro", fg="white", bg="black")
