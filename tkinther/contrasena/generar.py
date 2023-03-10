@@ -8,15 +8,15 @@ class generar:
         self.num = "0123456789"
         self.general = self.minus+self.mayus+self.num
         self.general2 = self.minus
-    def gen (self, longitud, caracteres):
+    def gen (self, longitud, caracteres): 
         if caracteres == "Si":
-            muestra = random.sample(self.general, longitud)
-            contraseña = "".join(muestra)
-            messagebox.showinfo("Contraseña", "Tu contraseña es:",contraseña)
+            self.muestra = random.sample(self.general, longitud)
+            self.contraseña = "".join(self.muestra)
+            messagebox.showinfo("Contraseña", "Tu contraseña es:",self.contraseña)
         if caracteres == "No":
-            muestra = random.sample(self.general2, longitud)
-            contraseña = "".join(muestra)
-            messagebox.showinfo("Contraseña", "Tu contraseña es:",contraseña)
+            self.muestra = random.sample(self.general2, longitud)
+            self.contraseña = "".join(self.muestra)
+            messagebox.showinfo("Contraseña", "Tu contraseña es:",self.contraseña)
             
 
         
