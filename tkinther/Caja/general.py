@@ -1,5 +1,6 @@
 from tkinter import Tk, Button, Frame, messagebox, Label, Entry
-
+from Transferir import *
+#Ventana principal
 ventana = Tk()
 ventana.title("Caja Popular")
 ventana.geometry("600x400")
@@ -17,6 +18,16 @@ Edad = Label(seccion1, text="Edad:", font="Arial 12", bg="orange")
 Edad.place(x=252, y=110)
 SaldoI = Label(seccion1, text="Saldo Inicial:", font="Arial 12", bg="orange")
 SaldoI.place(x=206, y=130)
+ingreso = Label(seccion1, text="Ingreso:", font="Arial 12", bg="orange")
+ingreso.place(x=206, y=150)
+Retiro = Label(seccion1, text="Retiro:", font="Arial 12", bg="orange")
+Retiro.place(x=206, y=170)
+CuentaO = Label(seccion1, text="Cuenta origen:", font="Arial 12", bg="orange")
+CuentaO.place(x=206, y=190)
+CuentaD = Label(seccion1, text="Cuenta destino:", font="Arial 12", bg="orange")
+CuentaD.place(x=206, y=210)
+Depositar = Label(seccion1, text="Depositar:", font="Arial 12", bg="orange")
+Depositar.place(x=206, y=210)
 Cuenta2= Entry(seccion1)
 Cuenta2.place(x=300, y=60)
 Titular2= Entry(seccion1)
@@ -25,4 +36,37 @@ Edad2= Entry(seccion1)
 Edad2.place(x=300, y=110)
 SaldoI2= Entry(seccion1)
 SaldoI2.place(x=300, y=135)
+Ingreso2= Entry(seccion1)
+Ingreso2.place(x=300, y=150)
+Retiro2= Entry(seccion1)
+Retiro2.place(x=300, y=165)
+CuentaO2= Entry(seccion1)
+CuentaO2.place(x=300, y=180)
+CuentaD2= Entry(seccion1)
+CuentaD2.place(x=300, y=195)
+Depositar2= Entry(seccion1)
+Depositar2.place(x=300, y=210)
+
+def RegistrarUsuario():
+    Nocuenta = int(Cuenta2.get())
+    Titularr = Titular2.get()
+    edad = int(Edad2.get())
+    Saldo = float(SaldoI2.get())
+def consultarsaldo():
+    Nocuenta = int(Cuenta2.get())
+    consultar_saldo(Nocuenta)
+def ingresarefectivo():
+    Nocuenta = int(Cuenta2.get())
+    ingreso = float(Ingreso2.get())
+    ingresar_efectivo(Nocuenta, ingreso)
+def retirar_efectivo():
+    Nocuenta = int(Cuenta2.get())
+    retiro = float(Retiro2.get())
+    retirar_efectivo(Nocuenta, retiro)
+def depositar():
+    cuentao = int(CuentaO2.get())
+    cuentad = int(CuentaD2.get())
+    deposito = float(Depositar2.get())
+    depositar(cuentao, cuentad, deposito)
+
 ventana.mainloop()   
