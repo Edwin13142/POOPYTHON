@@ -1,61 +1,63 @@
-from tkinter import Tk, Button, Frame, messagebox, Label, Entry
+from tkinter import messagebox
+
 class Transferir:
-    def __init__(self):
-        self.__Nocuenta = []
-        self.__Titularr = []
-        self.__edad = []
-        self.__Saldo = []
     
-    def registrar_usuario(self,Nocuenta,Titularr,edad,Saldo):
-        self.__Nocuenta.append(Nocuenta)
-        self.__Titularr.append(Titularr)
+    def __init__(self):
+        self.__ncuenta = []
+        self.__titular = []
+        self.__edad = []
+        self.__saldo = []
+    
+    def registrar_usuario(self,ncuenta,titular,edad,saldo):
+        self.__ncuenta.append(ncuenta)
+        self.__titular.append(titular)
         self.__edad.append(edad)
-        self.__Saldo.append(Saldo)
+        self.__saldo.append(saldo)
         
         messagebox.showinfo("Exito","Registro exitoso")
     
-    def consultar_saldo(self, Nocuenta):
-        if Nocuenta in self.__Nocuenta:
-            index = self.__Nocuenta.index(Nocuenta)
-            saldo = self.__Saldo[index]
+    def consultar_saldo(self, ncuenta):
+        if ncuenta in self.__ncuenta:
+            index = self.__ncuenta.index(ncuenta)
+            saldo = self.__saldo[index]
             messagebox.showinfo("Consulta de Saldo","Tu saldo es: "+ str(saldo))
         else:
             messagebox.showerror("Error", "No se encontró la cuenta")
     
-    def ingresar_efectivo(self, Nocuenta, ingreso):
-        if Nocuenta in self.__Nocuenta:
-            index = self.__Nocuenta.index(Nocuenta)
-            saldo = self.__Saldo[index]
+    def ingresar_efectivo(self, ncuenta, ingreso):
+        if ncuenta in self.__ncuenta:
+            index = self.__ncuenta.index(ncuenta)
+            saldo = self.__saldo[index]
             saldo += ingreso
-            self.__Saldo[index] = saldo
+            self.__saldo[index] = saldo
             messagebox.showinfo("Actualización de saldo","Tu saldo es:"+ str(saldo))
         else:
             messagebox.showerror("Error", "No se encontró la cuenta")
     
-    def retirar_efectivo(self, Nocuenta, retiro):
-        if ncuenta in self.__Nocuenta:
-            index = self.__Nocuenta.index(Nocuenta)
-            saldo = self.__Saldo[index]
+    def retirar_efectivo(self, ncuenta, retiro):
+        if ncuenta in self.__ncuenta:
+            index = self.__ncuenta.index(ncuenta)
+            saldo = self.__saldo[index]
             if saldo >= retiro:
                 saldo -= retiro
-                self.__Saldo[index] = saldo
+                self.__saldo[index] = saldo
                 messagebox.showinfo("Actualización de saldo","Tu saldo es:"+ str(saldo))
             else:
                 messagebox.showerror("Error", "No tienes suficiente saldo")
         else:
             messagebox.showerror("Error", "No se encontró la cuenta")
     
-    def depositar_a_otra_cuenta(self, cuentao, cuentad, deposito):
-        if cuentao in self.__Nocuenta and cuentad in self.__Nocuenta:
-            index_origen = self.__Nocuenta.index(cuentao)
-            index_destino = self.__Nocuenta.index(cuentad)
-            saldo_origen = self.__Saldo[index_origen]
-            saldo_destino = self.__Saldo[index_destino]
+    def depositar_a_otra_cuenta(self, ncuenta_origen, ncuenta_destino, deposito):
+        if ncuenta_origen in self.__ncuenta and ncuenta_destino in self.__ncuenta:
+            index_origen = self.__ncuenta.index(ncuenta_origen)
+            index_destino = self.__ncuenta.index(ncuenta_destino)
+            saldo_origen = self.__saldo[index_origen]
+            saldo_destino = self.__saldo[index_destino]
             if saldo_origen >= deposito:
                 saldo_origen -= deposito
                 saldo_destino += deposito
-                self.__Saldo[index_origen] = saldo_origen
-                self.__Saldo[index_destino] = saldo_destino
+                self.__saldo[index_origen] = saldo_origen
+                self.__saldo[index_destino] = saldo_destino
                 messagebox.showinfo("Depósito completado","Tu nuevo saldo es:"+ str(saldo_origen))
             else:
                 messagebox.showerror("Error", "No tienes suficiente saldo")
