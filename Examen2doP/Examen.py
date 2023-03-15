@@ -1,6 +1,11 @@
 from tkinter import Tk, Frame, Label, Button, Entry, Toplevel, DISABLED
 from Funciones import *
 
+def geneMat():
+    nombre = nombreI.get()
+    appP = apellPI.get()
+    appM = apellM.get()
+    
 ventana = Tk()
 ventana.title("Generador de matricula")
 ventana.geometry("600x400")
@@ -16,8 +21,8 @@ apellM = Label(seccion1, text="Apellido Materno:", font="Arial 12", bg="#DAF7A6"
 apellM.place(x=157, y=120)
 ano = Label(seccion1, text="Año de nacimiento:", font="Arial 12", bg="#DAF7A6")
 ano.place(x=157, y=150)
-carrera = Label(seccion1, text="Carrera:", font="Arial 12", bg="#DAF7A6")
-carrera.place(x=157, y=180)
+carreraa = Label(seccion1, text="Carrera:", font="Arial 12", bg="#DAF7A6")
+carreraa.place(x=157, y=180)
 nombreI= Entry(seccion1)
 nombreI.place(x=300, y=60)
 apellPI = Entry(seccion1)
