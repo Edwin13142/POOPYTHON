@@ -4,7 +4,12 @@ from Funciones import *
 def geneMat():
     nombre = nombreI.get()
     appP = apellPI.get()
-    appM = apellM.get()
+    appM = apellMI.get()
+    carrera = carreraI.get()
+    ano = anoI.get()
+    mi_matricula= Funciones(nombre, appP, appM, carrera, ano)
+    mi_matricula.generar_matricula()
+    
     
 ventana = Tk()
 ventana.title("Generador de matricula")
@@ -13,8 +18,8 @@ seccion1 = Frame(ventana, bg = "#DAF7A6")
 seccion1.pack(expand=True, fill="both")
 bienvenida = Label(seccion1, text="Inicio de sesion", bg="#DAF7A6", font="consolas 20 bold")
 bienvenida.pack()
-nombre = Label(seccion1, text="Nombre:", font="Arial 12", bg="#DAF7A6")
-nombre.place(x=190, y=60)
+nombreE = Label(seccion1, text="Nombre:", font="Arial 12", bg="#DAF7A6")
+nombreE.place(x=190, y=60)
 apellP = Label(seccion1, text="Apellido Paterno:", font="Arial 12", bg="#DAF7A6")
 apellP.place(x=157, y=90)
 apellM = Label(seccion1, text="Apellido Materno:", font="Arial 12", bg="#DAF7A6")
@@ -35,7 +40,7 @@ carreraI = Entry(seccion1)
 carreraI.place(x=300, y=180)
 
 
-botonMatricula = Button(seccion1, text="Generar matricula", fg="black", bg="white", font="Arial 12")
+botonMatricula = Button(seccion1, text="Generar matricula", fg="black", bg="white", font="Arial 12", command=geneMat)
 botonMatricula.place(x=300, y=250)
 
 ventana.mainloop()

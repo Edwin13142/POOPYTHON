@@ -12,20 +12,20 @@ class Funciones:
         self.__carrera = carrera
         
     def generar_matricula(self):
-        anoM  = 23
-        nombre = self.__nombre
+        anoMM = " "
+        anoM  = "23"
+        nombre = self.__nombre.upper()
         ano = self.__ano
-        appP = self.__appP
-        appM = self.__appM
-        carrera = self.__carrera
+        appP = self.__appP.upper()
+        appM = self.__appM.upper()
+        carrera = self.__carrera.upper()
+        anoMM += carrera [0:3]
+        anoMM += anoM
+        anoMM += ano[2:4]
+        anoMM += nombre [:1]
+        anoMM += appP [0:3]
+        anoMM += appM [0:3]
+        n = random.randint(1, 999)
+        anoMM += str((n))
         
-        anoM += ano[2:4]
-        anoM += nombre [:1]
-        anoM += appP [:1]
-        anoM += appM [:1]
-        
-        n1 = random.randint(1, 999)
-        anoM += str((n1))
-        anoM += carrera [0:3]
-        
-        messagebox.showinfo("Exito","Su matricula es:", anoM)
+        messagebox.showinfo("Exito","Su matricula es:"+ anoMM)
