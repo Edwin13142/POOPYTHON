@@ -51,4 +51,5 @@ panel.add(pestana2, text="Tareas")
 panel.add(pestana3, text="Eliminar Tarea")
 panel.add(pestana4, text="Actualizar Tarea")
 
+
 Ventana.mainloop()
