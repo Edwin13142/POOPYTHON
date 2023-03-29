@@ -45,3 +45,31 @@ class controladorBD:
         sal = bcrypt.gensalt()
         conHa = bcrypt.hashpw(conPlana, sal)
         return conHa
+    
+    def consultarUsuario(self,id):
+        #1.- Preparar la conexion
+        
+        conx= self.conexionBD()
+        
+        #2.- Verificar que el Id no este vacio
+        
+        if(id == ""):
+            messagebox.showwarning("Cuidado estimado usuario", "El id esta vacio, escribe uno valido")
+            conx.close()
+        else:
+            #3.- Proceder a buscar el usuario
+            try:
+                #4.- Preparar lo necesario para el select
+                cursor=conx.cursor()
+                sqlSelect = "select * from TBRregistrados where id="+id
+                
+                #5.- Ejecucion y guardado de la consulta
+                
+                cursor.execute(sqlSelect)
+                RSusuario = cursor.fetchall()
+                conx.close()
+                
+                return RSusuario
+                
+            except sqlite3.OperationalError:
+                print("Error en la consulta")
