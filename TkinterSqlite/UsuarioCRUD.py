@@ -19,9 +19,10 @@ def ejecutaSelectU():
     for usu in rsUsuario:
         cadena = str(usu[0])+" "+ usu[1] + " "+ str(usu[2])+ " "+ usu[3]
     if(rsUsuario):
-        print(cadena)
+        textBus.insert("0.0",cadena)
     else:
         messagebox.showerror("Error","Usuario no encontrado")
+    
 
 Ventana = Tk()
 Ventana.title("CRUD Usuarios")
@@ -63,7 +64,8 @@ txtid = Entry(pestana2,textvariable=varBus).pack()
 btnBusqueda = Button(pestana2,text="Buscar",command=ejecutaSelectU).pack()
 
 subBus = Label(pestana2,text="Registrado:",fg="blue",font=("Modern",18)).pack()
-textBus = tk.Text(pestana2,height=5,width=52).pack()
+textBus = tk.Text(pestana2,height=5,width=52)
+textBus.pack()
 
 
 panel.add(pestana1, text="Formulario de usuarios:")
