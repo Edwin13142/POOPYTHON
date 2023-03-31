@@ -22,6 +22,12 @@ def ejecutaSelectU():
         textBus.insert("0.0",cadena)
     else:
         messagebox.showerror("Error","Usuario no encontrado")
+        
+def ejecutaConsultU():
+    rsUsuario = controlador.consulta()
+    tree.delete(*tree.get_children())
+    for usu in rsUsuario:
+        tree.insert("", "end",text=usu[0], values=(usu[1], usu[2], usu[3]))
     
 
 Ventana = Tk()
@@ -67,10 +73,26 @@ subBus = Label(pestana2,text="Registrado:",fg="blue",font=("Modern",18)).pack()
 textBus = tk.Text(pestana2,height=5,width=52)
 textBus.pack()
 
+# Pestaña No.3 de buscar usuarios
+
+Presentacion = Label(pestana3,text="Usuarios Registrados",fg="Black",font=("Arial",15)).pack()
+tree = ttk.Treeview(pestana3)
+tree['columns']=('correo', 'contraseña', 'nombre')
+tree.column('#0', width=50, minwidth=50)
+tree.column('correo', width=150, minwidth=150)
+tree.column('nombre', width=120, minwidth=120)
+tree.column('contraseña', width=100, minwidth=100)
+tree.heading('#0', text='Id')
+tree.heading('correo', text='Correo')
+tree.heading('contraseña', text='Contraseña')
+tree.heading('nombre', text='Nombre')
+tree.pack()
+btnBusquedas = Button(pestana3,text="Consultar",command=ejecutaConsultU).pack()
+
 
 panel.add(pestana1, text="Formulario de usuarios:")
 panel.add(pestana2, text="Buscar usuario:")
-panel.add(pestana3, text="Consultar usuario:")
+panel.add(pestana3, text="Consultar usuarios:")
 panel.add(pestana4, text="Actualizar usuario:")
 
 Ventana.mainloop()
