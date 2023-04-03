@@ -29,6 +29,12 @@ def ejecutaConsultU():
     for usu in rsUsuario:
         tree.insert("", "end",text=usu[0], values=(usu[1], usu[2], usu[3]))
     
+def Actualizar():
+    controlador.actualiza(barID.get(),barCor.get(), barCon.get(), barNom.get())
+    
+def Eliminar():
+    controlador.eliminar(VARId.get())
+    
 
 Ventana = Tk()
 Ventana.title("CRUD Usuarios")
@@ -41,6 +47,7 @@ pestana1 = ttk.Frame(panel)
 pestana2 = ttk.Frame(panel)
 pestana3 = ttk.Frame(panel)
 pestana4 = ttk.Frame(panel)
+pestana5 = ttk.Frame(panel)
 
 #Aqui empieza Formulario Usuarios
 
@@ -89,10 +96,42 @@ tree.heading('nombre', text='Nombre')
 tree.pack()
 btnBusquedas = Button(pestana3,text="Consultar",command=ejecutaConsultU).pack()
 
+#Pesataña No.4 Actualizar usuario
+
+tit = Label(pestana4,text="Actualizar Usuario",fg="Black",font=("Arial",15)).pack()
+
+barID = tk.StringVar()
+idLabel =  Label(pestana4,text="Id:",fg="Black",font=("Arial",15)).pack()
+idEntry =  Entry(pestana4,textvariable=barID).pack()
+
+barNom = tk.StringVar()
+nomLabel =  Label(pestana4,text="Nombre:",fg="Black",font=("Arial",15)).pack()
+nomEntry =  Entry(pestana4,textvariable=barNom).pack()
+
+barCor = tk.StringVar()
+corLabel =  Label(pestana4,text="Correo:",fg="Black",font=("Arial",15)).pack()
+corEntry =  Entry(pestana4,textvariable=barCor).pack()
+
+barCon = tk.StringVar()
+conLabel =  Label(pestana4,text="Contraseña",fg="Black",font=("Arial",15)).pack()
+conEntry =  Entry(pestana4,textvariable=barCon).pack()
+
+btnActualizar = Button(pestana4,text="Actualizar", command=Actualizar).pack()
+
+#Pestaña No.5 Eliminar
+
+tit = Label(pestana5,text="Eliminar Usuario",fg="Black",font=("Arial",15)).pack()
+
+VARId = tk.StringVar()
+IDLabel =  Label(pestana5,text="Id:",fg="Black",font=("Arial",15)).pack()
+IDEntry =  Entry(pestana5,textvariable=VARId).pack()
+
+btnEliminar = Button(pestana5,text="Eliminar",command=Eliminar).pack()
 
 panel.add(pestana1, text="Formulario de usuarios:")
 panel.add(pestana2, text="Buscar usuario:")
 panel.add(pestana3, text="Consultar usuarios:")
 panel.add(pestana4, text="Actualizar usuario:")
+panel.add(pestana5, text="Eliminar")
 
 Ventana.mainloop()

@@ -24,7 +24,7 @@ class controladorBD:
         #2.- Revisar parametros vacios
         
         if(nom == "" or cor == "" or con == ""):
-            messagebox.showwarning("Aguas", "Revisa tu formulario")
+            messagebox.showerror("Error", "Revisa tu formulario")
             conx.close()
         else:
             #3.- Preparar datos y el querySQL
@@ -54,7 +54,7 @@ class controladorBD:
         #2.- Verificar que el Id no este vacio
         
         if(id == ""):
-            messagebox.showwarning("Cuidado estimado usuario", "El id esta vacio, escribe uno valido")
+            messagebox.showwarning("Error", "El id esta vacio, escribe uno valido")
             conx.close()
         else:
             #3.- Proceder a buscar el usuario
@@ -92,3 +92,57 @@ class controladorBD:
         except sqlite3.OperationalError:
             print("Error en la consulta")
             
+    def actualiza(self, idd, corr, cont, nom):
+        
+        #1.- Preparamos nuestra base de datos
+        conx = self.conexionBD()
+        
+        #Revisamos campos
+        
+        if(nom == "" or corr == "" or cont == "" or idd ==""):
+            messagebox.showerror("Error", "Revisa tu formulario")
+            conx.close()
+        else:
+        
+            try:
+                #Preparamos el update
+                cursor = conx.cursor()
+                conH = self.encriptarCon(cont)
+                sqlUpdate = ("UPDATE TBRregistrados SET correo = ?, contra = ?, nombre = ? WHERE id = ?")
+                datos = (corr,conH,nom,idd)
+                cursor.execute(sqlUpdate, datos)
+                conx.commit()
+                conx.close()
+                messagebox.showinfo("Exito", "Se actualizo el usuario")
+            
+            except sqlite3.OperationalError:
+                print("Error en la consulta")
+            
+    def eliminar(self,idd):
+        
+        #1.- Preparamos la conexion
+        conx = self.conexionBD()
+        
+        if(idd == ""):
+            messagebox.showerror("Error", "Revisa tu formulario")
+            conx.close()
+        
+        else:
+        
+            try: 
+                #Preparamos el eliminar
+                cursor = conx.cursor()
+                sqlDelete = ("DELETE FROM TBRregistrados WHERE id = ?")
+                datos = (idd)
+                pregunta = messagebox.askokcancel("Confirmacion", "¿Deseas eliminar ese usuario?")
+                if pregunta == True:
+                    cursor.execute(sqlDelete,datos)
+                    conx.commit()
+                    conx.close()
+                    messagebox.showinfo("Exito", "Se elimino el usuario")
+                else:
+                    conx.close()
+                    messagebox.showerror("Error", "El Usuario no fue eliminado")
+                    
+            except sqlite3.OperationalError:
+                print("Error en la consulta")
