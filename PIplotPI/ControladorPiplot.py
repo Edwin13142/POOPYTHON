@@ -36,3 +36,49 @@ class controladorPBD:
             conx.commit()
             conx.close()
             messagebox.showinfo("Exito", "Se guardo el usuario")
+            
+    def consultarTarea(self,num):
+        #1.- Preparar la conexion
+        
+        conx= self.conexionBD()
+        
+        #2.- Verificar que el Id no este vacio
+        
+        if(num == ""):
+            messagebox.showwarning("Error", "El numero de tarea esta vacio")
+            conx.close()
+        else:
+            #3.- Proceder a buscar el usuario
+            try:
+                #4.- Preparar lo necesario para el select
+                cursor=conx.cursor()
+                sqlSelect = "select * from Tareas where Id="+num
+                
+                #5.- Ejecucion y guardado de la consulta
+                
+                cursor.execute(sqlSelect)
+                RSusuario = cursor.fetchall()
+                conx.close()
+                
+                return RSusuario
+                
+            except sqlite3.OperationalError:
+                print("Error en la consulta")
+                
+    def consulta(self):
+        #1.- Preparamos nuestra conexion a base de datos
+        
+        conx =self.conexionBD()
+        try:
+            #Preparamos el select
+            cursor = conx.cursor()
+            sqlSelect = "select * from Tareas"
+            #Ejecutamos la consulta
+            cursor.execute(sqlSelect)
+            RSusuario = cursor.fetchall()
+            conx.close()
+                
+            return RSusuario
+                
+        except sqlite3.OperationalError:
+            print("Error en la consulta")
